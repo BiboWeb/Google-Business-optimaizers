@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBP Lead & Visual Studio Manager (V3.1 Clean)</title>
+    <title>GBP Lead & Visual Studio Manager (V3.2 Smart-Match)</title>
     <meta name="theme-color" content="#2563eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,7 +41,7 @@
                             <label class="block text-xs font-bold text-blue-900 uppercase tracking-wider mb-1.5">
                                 <i class="fa-solid fa-link mr-1"></i> 1. Google Maps Link / GBP URL einfügen
                             </label>
-                            <input type="url" id="gbp_url_input" placeholder="Hier den Maps-Link einfügen (z.B. http://googleusercontent.com/maps/place/...)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                            <input type="url" id="gbp_url_input" placeholder="Hier den Maps-Link einfügen (Share-Link oder Browser-URL)..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                         </div>
                         <button type="button" id="btn_fetch_gbp" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg text-sm transition shrink-0 w-full sm:w-auto h-10 flex items-center justify-center gap-2 shadow-sm">
                             <i class="fa-solid fa-wand-magic-sparkles"></i> Namen auslesen
@@ -75,7 +75,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Ansprechpartner</label>
-                            <input type="text" name="ansprechpartner" placeholder="z.B. Herr Müller (Inhaber)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <input type="text" name="ansprechpartner" placeholder="z.B. Inhaber" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Kontakt (Telefon / E-Mail)</label>
@@ -145,7 +145,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">Website Speed Test</label>
-                                <input type="text" name="web_speed" placeholder="z.B. 42% (Langsam)" class="w-full border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <input type="text" name="web_speed" placeholder="z.B. 42%" class="w-full border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">Mitarbeiter / Contacter</label>
@@ -224,7 +224,7 @@
                 
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nach Ort filtern:</label>
-                    <select id="filter_ort" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="filter_ort" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="ALLE">🌍 Alle Orte / Regionen</option>
                         <option value="Mtwapa">Mtwapa</option>
                         <option value="Bamburi">Bamburi</option>
@@ -238,7 +238,7 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nach Priorität filtern:</label>
-                    <select id="filter_prio" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="filter_prio" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="ALLE">Alle Prioritäten</option>
                         <option value="Hoch">Hoch 🔴</option>
                         <option value="Mittel">Mittel 🟡</option>
@@ -266,7 +266,7 @@
                             <th class="px-5 py-3.5">Status & Termine</th>
                             <th class="px-5 py-3.5">Web-Audit</th>
                             <th class="px-5 py-3.5">To-Do Massnahmen</th>
-                            <th class="px-4 py-3.5">Analytics Max Dev</th>
+                            <th class="px-5 py-3.5">Analytics Max Dev</th>
                             <th class="px-5 py-3.5">Umsatz</th>
                             <th class="px-5 py-3.5">Maps</th>
                             <th class="px-5 py-3.5">Aktion</th>
@@ -292,16 +292,49 @@
             document.getElementById('filter_prio').addEventListener('change', renderLeads);
         });
 
-        // Maps Link Parser
+        // Ultimativer Smart-Match URL Parser (Löst alle gängigen Maps Link Formate auf)
         document.getElementById('btn_fetch_gbp').addEventListener('click', function() {
             const urlInput = document.getElementById('gbp_url_input').value.trim();
             if (!urlInput) { alert("Bitte füge zuerst einen Link ein."); return; }
+            
+            let extractedName = "";
+
+            // Variante A: Langer Browser-Link mit /maps/place/Firmenname
             if (urlInput.includes('maps/place/')) {
                 try {
                     const part = urlInput.split('maps/place/')[1];
-                    const rawName = part.split('/')[0];
-                    document.getElementById('input_firma').value = decodeURIComponent(rawName).replace(/\+/g, ' ');
-                } catch (e) { console.log(e); }
+                    extractedName = part.split('/')[0];
+                } catch (e) {}
+            } 
+            // Variante B: Link-Struktur mit q=Firmenname
+            else if (urlInput.includes('q=')) {
+                try {
+                    const params = new URLSearchParams(urlInput.split('?')[1]);
+                    extractedName = params.get('q');
+                } catch (e) {}
+            }
+            // Variante C: Fallback für Handy Kurzlinks (bricht sauberen URL String auf)
+            else {
+                try {
+                    const urlObj = new URL(urlInput);
+                    if(urlObj.pathname && urlObj.pathname.length > 5 && !urlObj.hostname.includes('goo.gl')) {
+                        extractedName = urlObj.pathname.split('/').pop();
+                    }
+                } catch(e) {}
+            }
+
+            // Dekodieren und lesbar machen
+            if (extractedName && extractedName.length > 2 && !extractedName.includes('http') && !extractedName.match(/^[0-9.,-]+$/)) {
+                let cleanName = decodeURIComponent(extractedName).replace(/\+/g, ' ').replace(/@.*/, '');
+                // Zusätzliche Bereinigung von überflüssigen URL Parametern
+                if(cleanName.includes(',')) cleanName = cleanName.split(',')[0];
+                document.getElementById('input_firma').value = cleanName;
+            } else {
+                // Wenn es ein verschlüsselter Kurzlink (goo.gl) oder Koordinaten-Link ist, fragen wir den User elegant im Popup
+                let manualInput = prompt("Google Maps Kurzlink erkannt! Bitte trage kurz den Firmennamen ein:");
+                if(manualInput) {
+                    document.getElementById('input_firma').value = manualInput;
+                }
             }
         });
 
@@ -371,10 +404,8 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50/80 transition border-b border-slate-100 text-xs";
                 
-                // FEHLER-BEHEBUNG HIER: Nutzt jetzt sicher die richtige Variable für die Badges
                 const currentMeasures = lead.massnahmen || [];
                 const badges = currentMeasures.map(m => `<span class="inline-block bg-slate-100 text-slate-800 text-[10px] px-2 py-0.5 rounded font-medium border border-slate-200 mr-1 mb-1 shadow-sm">${m}</span>`).join('') || '-';
-                
                 const mapsLinkHtml = lead.maps_url ? `<a href="${lead.maps_url}" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm font-bold"><i class="fa-solid fa-location-arrow"></i></a>` : '-';
                 
                 let prioColor = "text-yellow-600 font-semibold";
