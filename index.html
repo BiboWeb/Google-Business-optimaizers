@@ -3,65 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBP Lead & Visual Studio Manager (Pro V2)</title>
-    
-    <meta name="theme-color" content="#3b82f6">
+    <title>GBP Lead & Visual Studio Manager (V3 Final)</title>
+    <meta name="theme-color" content="#2563eb">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 text-gray-800 p-4 md:p-8">
+<body class="bg-slate-50 text-slate-800 p-3 md:p-6 font-sans">
 
     <div class="max-w-7xl mx-auto space-y-6">
         
-        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
             <div class="relative z-10">
                 <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-3">
-                    <i class="fa-solid fa-map-location-dot"></i> GBP Lead & Visual Studio Manager (V2 Pro)
+                    <i class="fa-solid fa-map-location-dot"></i> GBP Lead & Visual Studio Manager
                 </h1>
-                <p class="text-blue-100 mt-2 text-sm max-w-2xl">
-                    Kopiere den Google Maps Link hinein, um den Firmennamen auszulesen. Verwalte deine Audits, Web-Refurbishments und Visual Services direkt vor Ort.
+                <p class="text-blue-100 mt-1.5 text-xs md:text-sm max-w-3xl">
+                    Kopiere einfach den Google Maps Link eines Profils hinein. Das Tool liest den Namen aus, verknüpft die URL und speichert deine Akquise-Leads (360° Fotos, VR-Touren, Drohnen-Aufnahmen) lokal in deiner Pipeline ab.
                 </p>
-            </div>
-            <div class="absolute right-0 bottom-0 opacity-10 translate-x-10 translate-y-10">
-                <i class="fa-solid fa-route text-[150px]"></i>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-                        <i class="fa-solid fa-plus-circle text-blue-500"></i> Lead-Details erfassen
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+                    <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-plus text-blue-600"></i> Neuen GBP-Eintrag erfassen
                     </h2>
-                    <span class="text-xs bg-blue-100 text-blue-800 font-semibold px-2.5 py-1 rounded-full">Agentur-Modus</span>
+                    <span class="text-[11px] bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Agentur-Modus</span>
                 </div>
 
                 <form id="gbpLeadsForm" class="p-6 space-y-5">
                     
-                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 flex flex-col sm:flex-row gap-3 items-end">
+                    <div class="bg-blue-50/60 p-4 rounded-xl border border-blue-100 flex flex-col sm:flex-row gap-3 items-end">
                         <div class="flex-1 w-full">
-                            <label class="block text-xs font-bold text-blue-800 uppercase tracking-wider mb-1.5">
-                                <i class="fa-solid fa-link mr-1"></i> Google Maps Link / GBP URL
+                            <label class="block text-xs font-bold text-blue-900 uppercase tracking-wider mb-1.5">
+                                <i class="fa-solid fa-link mr-1"></i> 1. Google Maps Link / GBP URL einfügen
                             </label>
-                            <input type="url" id="gbp_url_input" placeholder="https://www.google.com/maps/place/..." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                            <input type="url" id="gbp_url_input" placeholder="Hier den Maps-Link einfügen (z.B. https://www.google.com/maps/place/...)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                         </div>
-                        <button type="button" id="btn_fetch_gbp" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition shrink-0 w-full sm:w-auto h-10 flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> Auslesen
+                        <button type="button" id="btn_fetch_gbp" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg text-sm transition shrink-0 w-full sm:w-auto h-10 flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Namen auslesen
                         </button>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Firma *</label>
-                            <input type="text" name="firma" id="input_firma" required placeholder="Firmenname" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Firma *</label>
+                            <input type="text" name="firma" id="input_firma" required placeholder="Firmenname (wird beim Auslesen automatisch befüllt)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Ort der Firma (GBP Region) *</label>
-                            <select name="ort_region" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Ort der Firma (GBP Region) *</label>
+                            <select name="ort_region" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
                                 <option value="Mtwapa">Mtwapa</option>
                                 <option value="Bamburi">Bamburi</option>
                                 <option value="Nyali">Nyali</option>
@@ -76,146 +70,161 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Exakte Adresse</label>
-                            <input type="text" name="adresse" placeholder="Straße, Nr." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Adresse / Ort</label>
+                            <input type="text" name="adresse" placeholder="Musterstraße 1, Ort" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Ansprechpartner</label>
-                            <input type="text" name="ansprechpartner" placeholder="Inhaber / Manager" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Ansprechpartner</label>
+                            <input type="text" name="ansprechpartner" placeholder="z.B. Herr Müller (Inhaber)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Kontakt (Tel/Mail)</label>
-                            <input type="text" name="kontakt" placeholder="info@firma.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Kontakt (Telefon / E-Mail)</label>
+                            <input type="text" name="kontakt" placeholder="079 123 / info@firma.ch" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Pipeline-Status</label>
-                            <select name="pipeline_status" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Aktueller GBP Zustand</label>
+                            <select name="gbp_status" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                                <option value="Kein Profil">Kein Profil / Unbeansprucht</option>
+                                <option value="Optimierungsbedarf">Optimierungsbedürftig</option>
+                                <option value="Perfekt">Perfekt gepflegt</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Akquise-Phase (Pipeline)</label>
+                            <select name="pipeline_status" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
                                 <option value="Noch kontaktieren">Noch kontaktieren</option>
                                 <option value="In Kontakt">In Kontakt</option>
-                                <option value="Ortstermin vereinbart">Ortstermin 📸</option>
+                                <option value="Ortstermin vereinbart">Ortstermin vereinbart 📸</option>
                                 <option value="Angebot gesendet">Angebot gesendet</option>
-                                <option value="Gewonnen 🎉">Gewonnen 🎉</option>
+                                <option value="Gewonnen 🎉">Kunde gewonnen 🎉</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">GBP Zustand</label>
-                            <select name="gbp_status" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
-                                <option value="Kein Profil">Kein Profil / Unbeansprucht</option>
-                                <option value="Optimierungsbedarf">Optimierungsbedarf</option>
-                                <option value="Perfekt">Perfekt</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Mitarbeiter / Contacter</label>
-                            <input type="text" name="contacter" placeholder="Name Mitarbeiter" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Priorität</label>
-                            <select name="prioritaet" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Priorität</label>
+                            <select name="prioritaet" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
                                 <option value="Hoch">Hoch 🔴</option>
                                 <option value="Mittel" selected>Mittel 🟡</option>
                                 <option value="Niedrig">Niedrig 🟢</option>
                             </select>
                         </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Ranking (1-5 Sterne)</label>
+                            <select name="ranking_sterne" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                                <option value="- kein Ranking">- kein Ranking</option>
+                                <option value="⭐ 1 Stern">⭐ 1 Stern</option>
+                                <option value="⭐⭐ 2 Sterne">⭐⭐ 2 Sterne</option>
+                                <option value="⭐⭐⭐ 3 Sterne">⭐⭐⭐ 3 Sterne</option>
+                                <option value="⭐⭐⭐⭐ 4 Sterne">⭐⭐⭐⭐ 4 Sterne</option>
+                                <option value="⭐⭐⭐⭐⭐ 5 Sterne">⭐⭐⭐⭐⭐ 5 Sterne</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-3">
-                        <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-                            <i class="fa-solid fa-gauge-high text-indigo-500"></i> Web- & Profil-Audit
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                        <span class="block text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-gauge-high text-blue-600"></i> Web- & Profil-Audit
                         </span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-1">Website vorhanden?</label>
-                                <select name="web_vorhanden" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Website vorhanden?</label>
+                                <select name="web_vorhanden" class="w-full border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
                                     <option value="Ja">Ja</option>
                                     <option value="Nein">Nein</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-1">Web Refurbish? (Renovierung)</label>
-                                <select name="web_refurbish" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Web Refurbish?</label>
+                                <select name="web_refurbish" class="w-full border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
                                     <option value="Nein">Nein</option>
                                     <option value="Ja (Dringend)">Ja (Dringend)</option>
                                     <option value="Leichtes Update">Leichtes Update</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-1">Website Speed Test</label>
-                                <input type="text" name="web_speed" placeholder="z.B. 42% (Langsam)" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Website Speed Test</label>
+                                <input type="text" name="web_speed" placeholder="z.B. 42% (Langsam)" class="w-full border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Mitarbeiter / Contacter</label>
+                                <input type="text" name="contacter" placeholder="Name Mitarbeiter" class="w-full border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
-                            <i class="fa-solid fa-list-check mr-1"></i> Empfohlene Maßnahmen & To-Dos
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">
+                            <i class="fa-solid fa-eye mr-1"></i> Empfohlene Visual-Massnahmen für das Angebot
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
-                                <input type="checkbox" name="measures" value="Drone Takes" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="flex items-center gap-2 text-gray-700 font-medium"><i class="fa-solid fa-helicopter text-blue-500 w-5 text-center"></i> Drone Takes</span>
+                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" name="measures" value="Drone Takes" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500">
+                                <span class="flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-helicopter text-blue-500 w-5 text-center"></i> Drone Takes</span>
                             </label>
-                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
-                                <input type="checkbox" name="measures" value="360° Pictures" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="flex items-center gap-2 text-gray-700 font-medium"><i class="fa-solid fa-circle-dot text-green-500 w-5 text-center"></i> 360° Pictures</span>
+                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" name="measures" value="360° Pictures" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500">
+                                <span class="flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-circle-dot text-green-500 w-5 text-center"></i> 360° Pictures</span>
                             </label>
-                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
-                                <input type="checkbox" name="measures" value="VR Tour" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="flex items-center gap-2 text-gray-700 font-medium"><i class="fa-solid fa-vr-cardboard text-purple-500 w-5 text-center"></i> VR Tour</span>
+                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" name="measures" value="VR Tour" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500">
+                                <span class="flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-vr-cardboard text-purple-500 w-5 text-center"></i> VR Tour</span>
                             </label>
-                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
-                                <input type="checkbox" name="measures" value="Review-management" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="flex items-center gap-2 text-gray-700 font-medium"><i class="fa-solid fa-star text-yellow-500 w-5 text-center"></i> Review-Management</span>
+                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" name="measures" value="Review-management" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500">
+                                <span class="flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-star text-yellow-500 w-5 text-center"></i> Review Management</span>
                             </label>
-                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
-                                <input type="checkbox" name="measures" value="Local Address correct" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="flex items-center gap-2 text-gray-700 font-medium"><i class="fa-solid fa-location-dot text-red-500 w-5 text-center"></i> Address Correct</span>
+                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" name="measures" value="Local Address correct" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500">
+                                <span class="flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-location-dot text-red-500 w-5 text-center"></i> Address Correction</span>
                             </label>
-                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-gray-50 cursor-pointer transition">
-                                <input type="checkbox" name="measures" value="Pictures to remove" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="flex items-center gap-2 text-gray-700 font-medium"><i class="fa-solid fa-trash-can text-orange-500 w-5 text-center"></i> Pics to Remove</span>
+                            <label class="flex items-center space-x-3 border p-3 rounded-xl bg-white hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" name="measures" value="Pictures to remove" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500">
+                                <span class="flex items-center gap-2 text-slate-700 font-medium"><i class="fa-solid fa-trash-can text-orange-500 w-5 text-center"></i> Photo Removal</span>
                             </label>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Angebot (CHF)</label>
-                            <input type="number" name="budget" placeholder="750" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Angebotsbetrag (CHF)</label>
+                            <input type="number" name="budget" placeholder="490" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Ortstermin</label>
-                            <input type="date" name="termin_vor_ort" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Kontaktiert am</label>
+                            <input type="date" name="kontaktiert_am" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Follow-Up Datum</label>
-                            <input type="date" name="follow_up" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Ortstermin</label>
+                            <input type="date" name="termin_vor_ort" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">Analytics Max Dev</label>
-                            <input type="text" name="analytics_max_dev" placeholder="z.B. +150% Aufrufe" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Follow-up Datum</label>
+                            <input type="date" name="follow_up" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Analytics Max Dev</label>
+                            <input type="text" name="analytics_max_dev" placeholder="+150% Aufrufe" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
 
                     <div class="flex justify-end pt-2">
-                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition shadow-md flex items-center gap-2">
-                            <i class="fa-solid fa-floppy-disk"></i> Lead speichern
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-floppy-disk"></i> Eintrag speichern
                         </button>
                     </div>
                 </form>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 space-y-5 h-fit">
-                <h3 class="text-md font-bold text-gray-800 flex items-center gap-2 border-b pb-3">
-                    <i class="fa-solid fa-filter text-indigo-500"></i> Regionen- & Prio-Filter
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-5 h-fit">
+                <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2 border-b pb-3 uppercase tracking-wider">
+                    <i class="fa-solid fa-filter text-blue-600"></i> Regionen- & Prio-Filter
                 </h3>
                 
                 <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Nach Ort filtern:</label>
-                    <select id="filter_ort" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nach Ort filtern:</label>
+                    <select id="filter_ort" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="ALLE">🌍 Alle Orte / Regionen</option>
                         <option value="Mtwapa">Mtwapa</option>
                         <option value="Bamburi">Bamburi</option>
@@ -228,8 +237,8 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1.5">Nach Priorität filtern:</label>
-                    <select id="filter_prio" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nach Priorität filtern:</label>
+                    <select id="filter_prio" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="ALLE">Alle Prioritäten</option>
                         <option value="Hoch">Hoch 🔴</option>
                         <option value="Mittel">Mittel 🟡</option>
@@ -237,8 +246,8 @@
                     </select>
                 </div>
                 
-                <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
-                    <span>Einträge Gesamt: <strong id="stats_total" class="text-gray-900 font-bold">0</strong></span>
+                <div class="pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+                    <span>Firmen gesamt: <strong id="stats_total" class="text-slate-900 font-bold">0</strong></span>
                     <button id="btn_clear_all" class="text-red-500 hover:text-red-700 font-semibold flex items-center gap-1 transition">
                         <i class="fa-solid fa-trash-can"></i> Alle löschen
                     </button>
@@ -246,50 +255,36 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-xs md:text-sm">
                     <thead>
-                        <tr class="bg-gray-50 text-gray-500 uppercase text-[10px] tracking-wider border-b border-gray-200 font-bold">
+                        <tr class="bg-slate-50 text-slate-500 uppercase text-[10px] tracking-wider border-b border-slate-200 font-bold">
                             <th class="px-5 py-3.5">Firma / Region / Contacter</th>
                             <th class="px-5 py-3.5">Prio</th>
-                            <th class="px-5 py-3.5">Status / Follow-Up</th>
-                            <th class="px-5 py-3.5">Web-Audit / Speed</th>
-                            <th class="px-5 py-3.5">To-Do Maßnahmen</th>
+                            <th class="px-5 py-3.5">Ranking</th>
+                            <th class="px-5 py-3.5">Status & Termine</th>
+                            <th class="px-5 py-3.5">Web-Audit</th>
+                            <th class="px-5 py-3.5">To-Do Massnahmen</th>
                             <th class="px-5 py-3.5">Analytics Max Dev</th>
-                            <th class="px-5 py-3.5">Budget</th>
+                            <th class="px-5 py-3.5">Umsatz</th>
                             <th class="px-5 py-3.5">Maps</th>
                             <th class="px-5 py-3.5">Aktion</th>
                         </tr>
                     </thead>
-                    <tbody id="leadsTableBody" class="divide-y divide-gray-100 text-gray-700">
+                    <tbody id="leadsTableBody" class="divide-y divide-slate-100 text-slate-700">
                         </tbody>
                 </table>
             </div>
-            <div id="noLeadsMessage" class="p-8 text-center text-gray-400 text-sm hidden">
-                <i class="fa-solid fa-folder-open text-2xl mb-2 block text-gray-300"></i> Keine passenden Leads gefunden.
+            <div id="noLeadsMessage" class="p-8 text-center text-slate-400 text-sm hidden">
+                <i class="fa-solid fa-folder-open text-2xl mb-2 block text-slate-300"></i> Keine passenden Einträge gefunden.
             </div>
         </div>
 
     </div>
 
     <script>
-        const STORAGE_KEY = 'gbp_agency_leads_v2';
-
-        // Registriere den Service-Worker direkt für die App-Fähigkeit
-        if ('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE_NAME = 'gbp-cache-v2';
-                self.addEventListener('install', e => {
-                    e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['.'])));
-                });
-                self.addEventListener('fetch', e => {
-                    e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
-                });
-            `;
-            const blob = new Blob([swCode], {type: 'application/javascript'});
-            navigator.serviceWorker.register(URL.createObjectURL(blob));
-        }
+        const STORAGE_KEY = 'gbp_agency_leads_v3';
 
         document.addEventListener('DOMContentLoaded', () => {
             renderLeads();
@@ -297,7 +292,7 @@
             document.getElementById('filter_prio').addEventListener('change', renderLeads);
         });
 
-        // Maps URL-Parser
+        // Maps Link Parser
         document.getElementById('btn_fetch_gbp').addEventListener('click', function() {
             const urlInput = document.getElementById('gbp_url_input').value.trim();
             if (!urlInput) { alert("Bitte füge zuerst einen Link ein."); return; }
@@ -326,13 +321,14 @@
                 kontakt: formData.get('kontakt') || '-',
                 pipeline_status: formData.get('pipeline_status'),
                 gbp_status: formData.get('gbp_status'),
-                contacter: formData.get('contacter') || '-',
                 prioritaet: formData.get('prioritaet'),
+                ranking_sterne: formData.get('ranking_sterne'),
                 web_vorhanden: formData.get('web_vorhanden'),
                 web_refurbish: formData.get('web_refurbish'),
                 web_speed: formData.get('web_speed') || '-',
-                massnahmen: selectedMeasures,
-                budget: formData.get('budget') ? formData.get('budget') + ' CHF' : '-',
+                contacter: formData.get('contacter') || '-',
+                budget: formData.get('budget') ? 'CHF ' + formData.get('budget') : '-',
+                kontaktiert_am: formData.get('kontaktiert_am') || '-',
                 termin: formData.get('termin_vor_ort') || '-',
                 follow_up: formData.get('follow_up') || '-',
                 analytics_max_dev: formData.get('analytics_max_dev') || '-',
@@ -347,7 +343,6 @@
             renderLeads();
         });
 
-        // Live-Rendering & Tabellenaufbau
         function renderLeads() {
             const leads = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
             const filterOrt = document.getElementById('filter_ort').value;
@@ -373,9 +368,9 @@
 
             filteredLeads.forEach(lead => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50/80 transition border-b border-gray-100";
+                tr.className = "hover:bg-slate-50/80 transition border-b border-slate-100 text-xs";
                 
-                const badges = lead.massnahmen.map(m => `<span class="inline-block bg-slate-100 text-slate-800 text-[10px] px-2 py-0.5 rounded font-medium border border-gray-200 mr-1 mb-1 shadow-sm">${m}</span>`).join('') || '-';
+                const badges = lead.massnahmen.map(m => `<span class="inline-block bg-slate-100 text-slate-800 text-[10px] px-2 py-0.5 rounded font-medium border border-slate-200 mr-1 mb-1 shadow-sm">${m}</span>`).join('') || '-';
                 const mapsLinkHtml = lead.maps_url ? `<a href="${lead.maps_url}" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm font-bold"><i class="fa-solid fa-location-arrow"></i></a>` : '-';
                 
                 let prioColor = "text-yellow-600 font-semibold";
@@ -384,26 +379,29 @@
 
                 tr.innerHTML = `
                     <td class="px-5 py-3.5">
-                        <div class="font-bold text-gray-900 text-sm">${lead.firma}</div>
-                        <div class="text-[11px] text-gray-500 flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-indigo-500"></i> <span class="text-indigo-600 font-semibold">${lead.ort_region}</span> | ${lead.adresse}</div>
-                        <div class="text-[11px] text-gray-400 mt-0.5">Contacter: <span class="text-gray-600">${lead.contacter}</span></div>
+                        <div class="font-bold text-slate-900 text-sm">${lead.firma}</div>
+                        <div class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-indigo-500"></i> <span class="text-indigo-600 font-semibold">${lead.ort_region}</span> | ${lead.adresse}</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">Contacter: <span class="text-slate-600">${lead.contacter}</span></div>
                     </td>
                     <td class="px-5 py-3.5 ${prioColor}">${lead.prioritaet}</td>
-                    <td class="px-5 py-3.5">
-                        <span class="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-[11px] font-semibold border">${lead.pipeline_status}</span>
-                        <div class="text-[10px] text-gray-500 mt-1.5 font-medium"><i class="fa-regular fa-calendar"></i> F-Up: ${lead.follow_up}</div>
+                    <td class="px-5 py-3.5 text-slate-600 font-medium">${lead.ranking_sterne}</td>
+                    <td class="px-5 py-3.5 space-y-1">
+                        <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-[10px] font-bold border border-blue-100 uppercase">${lead.pipeline_status}</span>
+                        <div class="text-[10px] text-slate-500 pt-1">📞 Kontaktiert: ${lead.kontaktiert_am}</div>
+                        <div class="text-[10px] text-slate-600 font-semibold">📸 Termin: ${lead.termin}</div>
+                        <div class="text-[10px] text-red-500">⏳ F-Up: ${lead.follow_up}</div>
                     </td>
                     <td class="px-5 py-3.5 text-xs space-y-0.5">
                         <div>Web da: <span class="font-semibold">${lead.web_vorhanden}</span></div>
                         <div>Refurbish: <span class="text-orange-600 font-semibold">${lead.web_refurbish}</span></div>
-                        <div class="text-[11px] text-gray-400">Speed: ${lead.web_speed}</div>
+                        <div class="text-[11px] text-slate-400">Speed: ${lead.web_speed}</div>
                     </td>
                     <td class="px-5 py-3.5 max-w-xs">${badges}</td>
                     <td class="px-5 py-3.5 font-semibold text-indigo-600 text-sm">${lead.analytics_max_dev}</td>
-                    <td class="px-5 py-3.5 font-bold text-gray-900 text-sm">${lead.budget}</td>
+                    <td class="px-5 py-3.5 font-bold text-slate-900 text-sm">${lead.budget}</td>
                     <td class="px-5 py-3.5">${mapsLinkHtml}</td>
                     <td class="px-5 py-3.5">
-                        <button onclick="deleteLead(${lead.id})" class="text-red-400 hover:text-red-600 transition"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="deleteLead(${lead.id})" class="text-slate-400 hover:text-red-600 transition"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 `;
                 tableBody.appendChild(tr);
